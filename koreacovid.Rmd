@@ -67,9 +67,14 @@ colPerc(table1)
 The numerical results her show us that the men are dying off more than two time the rate of the women.
 
 ## Inferential results 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
-
-
+This test shows us that the men are 2.3 times more likely to die than the women. The confidence level is 95% that 1.4 is the low and 3.9 is the high so the odds ratio is 2.3. 
 
 ## Conclusions
 
+By using the graphical, numerical, and inferential results show us that the men are dying off more than the women. All of these tests show us that death is not independant from sex because if it was, the men and the women would be dying off the same.
