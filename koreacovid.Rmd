@@ -15,6 +15,12 @@ require(tigerstats)
 require(lubridate)
 kRdata <- read.csv(file = 'kRdata.csv')
 ```
+
+```{r eval=FALSE}
+kRdata <- kRdata %>%
+mutate(across(where(is.character), as.factor))
+```
+
 ### Data is from the Patient_Info dataset from South Korea 1 Jan to 1 May 
 ### This is contained in a downloadable zip file from kaggle
 
@@ -25,7 +31,7 @@ state of a patient must be died or alive - we adjust that as well
 # Question 1 - Is dying independent of sex
 
 
-
+To find out if dying is independent of sex we will be using graphical, numerical, and infertial tests. 
 
 Table of patients:
 ```{r}
@@ -38,17 +44,27 @@ with(kRdata, table(Sex, result))
 
 ## We create two bar charts - one based on frequency and the other on percent, use ggplot commands to do this
 
-`
+```{r}
+barchartGC(~result + Sex,data=kRdata)
+barchartGC(~result + Sex,data=kRdata, type="percent")
+
+```
 
   
-
+The graphical results shows us that men died off more than women. 
 
 
 
 
   
 ## Numerical results
+```{r}
+table1 <- xtabs(~result + Sex, data=kRdata)
+rowPerc(table1)
+colPerc(table1)
+```
 
+The numerical results her show us that the men are dying off more than two time the rate of the women.
 
 ## Inferential results 
 
